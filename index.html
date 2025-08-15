@@ -1,23 +1,3 @@
-<div id="password-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#222;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-    <h2>أدخل كلمة المرور للدخول للعبة</h2>
-    <input type="password" id="game-password" placeholder="كلمة المرور" style="padding:10px;font-size:1.2rem;">
-    <button onclick="checkPassword()" style="padding:10px 25px;margin-top:10px;">دخول</button>
-    <div id="password-error" style="color:red; margin-top:10px; font-size:1rem;"></div>
-</div>
-
-<script>
-function checkPassword() {
-    const passwordInput = document.getElementById('game-password').value;
-    const errorDiv = document.getElementById('password-error');
-    const correctPassword = "king"; // غيّرها إلى أي كلمة مرور تريدها
-
-    if (passwordInput === correctPassword) {
-        document.getElementById('password-screen').style.display = "none";
-    } else {
-        errorDiv.textContent = "كلمة المرور خاطئة!";
-    }
-}
-</script>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -376,7 +356,7 @@ function checkPassword() {
             'خوخ 🍑', 'كمثرى 🍐', 'ليمون 🍋', 'كيوي 🥝', 'مانجو 🥭', 'أفوكادو 🥑', 'جوز الهند 🥥', 'توت أزرق 🫐',
             'بروكلي 🥦', 'جزر 🥕', 'ذرة 🌽', 'طماطم 🍅', 'خيار 🥒', 'باذنجان 🍆', 'فلفل 🌶️', 'بطاطس 🥔',
             'بصل 🧅', 'ثوم 🧄', 'فطر 🍄', 'فلفل أخضر 🫑', 'خس 🥬', 'يقطين 🎃', 'زيتون 🫒', 'شمام 🍈',
-            'فول سوداني 🥜', 'كستناء 🌰', 'فلفل حار 🌶️', 'زنجبيل 🫚', 'بطاطا حلوة 🍠', 'تفاح 🍎'
+            'فول سوداني 🥜', 'كستناء 🌰', 'فلفل حار 🌶️', 'زنجبيل 🫚', 'بطاطا حلوة 🍠 ', 'تفاح 🍎'
         ];
 
         let activePlayers = [], eliminatedPlayers = [], fruitAssignments = [], countdownInterval = null;
