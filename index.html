@@ -303,6 +303,13 @@
             <div class="active-players" id="active-players-count"></div>
             <button class="btn btn-add-player" onclick="addNewPlayer()">➕ إضافة لاعب</button>
             <div id="countdown-timer"></div>
+            <div class="bomb-controls" id="bomb-controls" style="display: none;">
+                <button id="plant-bomb-btn" class="btn-plant-bomb" onclick="plantNewBomb()">
+                    💣 زرع قنبلة يدوياً
+                </button>
+                <div class="bomb-status" id="bomb-status"></div>
+            </div>
+        </div>
         <div id="fruit-grid"></div>
         <div id="active-players-section" style="display: block;">
             <h2>اللاعبون النشطون 🛡️</h2>
@@ -366,9 +373,6 @@
         // --- MODIFIED: New state management for special fruits ---
         let specialFruitsAreEnabled = false;
         let specialFruitsState = {
-            bomb: { used: false },
-            golden: { used: false },
-            generous: { used: false },
             shield: { used: false }
         };
         // This flag is for the manual bomb planting button only
@@ -400,7 +404,7 @@
             activePlayers = [...names];
             
             // --- MODIFIED: One-time check to enable special fruits for the entire game ---
-            if (activePlayers.length >= 6) {
+            if (activePlayers.length >= 2) {
                 specialFruitsAreEnabled = true;
             }
 
@@ -518,7 +522,7 @@
         function handleBomb(bombAssignment) {
             document.getElementById('sound-bomb')?.play();
             specialFruitsState.bomb.used = true; // Mark as used for the game
-            bombExploded = true; // For manual planting logic
+            bombExploded = false; // For manual planting logic
             bombAvailableForPlanting = true;
             let reshuffleNeeded = false;
             let savedList = [], eliminatedListTxt = [];
