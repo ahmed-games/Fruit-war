@@ -674,7 +674,28 @@
             const messageEl = document.getElementById('popup-message');
 
             titleEl.textContent = title;
-            messageEl.innerHTML = message;
+            if (message.includes('احمد توفيق')) {
+    messageEl.innerHTML = `<img src="ahmed_tawfik.png" alt="احمد توفيق" style="width:220px;height:220px;border-radius:50%;margin-bottom:12px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('منذر')) {
+    messageEl.innerHTML = `<img src="monzer.png" alt="منذر" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('سو')) {
+    messageEl.innerHTML = `<img src="sou.png" alt="سو" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('سالم')) {
+    messageEl.innerHTML = `<img src="salem.png" alt="سالم" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('رورو')) {
+    messageEl.innerHTML = `<img src="roro.png" alt="رورو" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('احمد محسن')) {
+    messageEl.innerHTML = `<img src="ahmed_mohsen.png" alt="احمد محسن" style="width:220px;height:220px;border-radius:50%;margin-bottom:12px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('مصطفى')) {
+    messageEl.innerHTML = `<img src="mustafa.png" alt="مصطفى" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('احمد')) {
+    messageEl.innerHTML = `<img src="player1.png" alt="احمد" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else if (message.includes('بطاطس')) {
+    messageEl.innerHTML = `<img src="batatis.png" alt="بطاطس" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${message}`;
+} else {
+    messageEl.innerHTML = message;
+}
+
             content.className = `popup-content ${type}`;
             popup.classList.add('visible');
         }
@@ -697,7 +718,40 @@
                 button.title = `إعادة إضافة ${player}`;
                 button.textContent = '+';
                 const playerLabel = index === 0 ? `💀 ${player} (آخر مقصي)` : `💀 ${player}`;
-                const span = document.createElement('span'); span.textContent = playerLabel;
+                let span;
+if (player === "احمد توفيق") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="ahmed_tawfik.png" alt="احمد توفيق" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "منذر") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="monzer.png" alt="منذر" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "سو") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="sou.png" alt="سو" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "سالم") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="salem.png" alt="سالم" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "رورو") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="roro.png" alt="رورو" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "احمد") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="player1.png" alt="احمد" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "مصطفى") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="mustafa.png" alt="مصطفى" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "احمد محسن") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="ahmed_mohsen.png" alt="احمد محسن" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else if (player === "بطاطس") {
+    span = document.createElement('span');
+    span.innerHTML = `<img src="batatis.png" alt="بطاطس" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">${playerLabel}`;
+} else {
+    span = document.createElement('span');
+    span.textContent = playerLabel;
+}
+
+
                 li.appendChild(button); li.appendChild(span); list.appendChild(li);
             });
         }
@@ -809,7 +863,27 @@
             stopCountdown();
             document.getElementById('sound-win')?.play();
             gameEnded = true;
-            document.getElementById('winner-name').textContent = winnerName;
+            if(winnerName === "احمد توفيق") {
+    document.getElementById('winner-name').innerHTML = `<img src="ahmed_tawfik.png" alt="احمد توفيق" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "منذر") {
+    document.getElementById('winner-name').innerHTML = `<img src="monzer.png" alt="منذر" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "سو") {
+    document.getElementById('winner-name').innerHTML = `<img src="sou.png" alt="سو" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "سالم") {
+    document.getElementById('winner-name').innerHTML = `<img src="salem.png" alt="سالم" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "رورو") {
+    document.getElementById('winner-name').innerHTML = `<img src="roro.png" alt="رورو" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "احمد") {
+    document.getElementById('winner-name').innerHTML = `<img src="player1.png" alt="احمد" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "مصطفى") {
+    document.getElementById('winner-name').innerHTML = `<img src="mustafa.png" alt="مصطفى" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "احمد محسن") {
+    document.getElementById('winner-name').innerHTML = `<img src="ahmed_mohsen.png" alt="احمد محسن" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else if (winnerName === "بطاطس") {
+    document.getElementById('winner-name').innerHTML = `<img src="batatis.png" alt="بطاطس" style="width:220px;height:220px;border-radius:50%;margin-bottom:20px;object-fit:cover;"><br>${winnerName}`;
+} else {
+    document.getElementById('winner-name').textContent = winnerName;
+}
             document.getElementById('winner-screen').classList.add('visible');
             
             document.getElementById('active-players-section').style.display = 'none';
