@@ -648,7 +648,7 @@
 
         function startCountdown() {
             document.getElementById('sound-countdown')?.play();
-            let timeLeft = 30;
+            let timeLeft = 20;
             const timerElement = document.getElementById('countdown-timer');
             timerElement.style.display = 'block';
             const updateTimer = () => { timerElement.textContent = `⏰ ${timeLeft} ⏰`; };
@@ -759,17 +759,45 @@ if (player === "احمد توفيق") {
         function getSafePlayerId(playerName) { return `player-id-${playerName.replace(/[^a-zA-Z0-9أ-ي]/g, '_')}`; }
         
         function updateActivePlayersList() {
-            const list = document.getElementById('active-players-list');
-            list.innerHTML = '';
-            const sortedActive = [...activePlayers].sort((a, b) => a.localeCompare(b, 'ar'));
-            sortedActive.forEach(player => {
-                const li = document.createElement('li');
-                const shieldCount = playerShields[player] || 0;
-                const safeId = getSafePlayerId(player);
-                li.innerHTML = `<span>${player}</span><div class="shield-controls"><button onclick="changeShieldCount('${player}', -1)" title="إنقاص درع">-</button><span id="shield-count-${safeId}">${shieldCount} 🛡️</span><button onclick="changeShieldCount('${player}', 1)" title="إضافة درع">+</button></div>`;
-                list.appendChild(li);
-            });
+    const list = document.getElementById('active-players-list');
+    list.innerHTML = '';
+    const sortedActive = [...activePlayers].sort((a, b) => a.localeCompare(b, 'ar'));
+    sortedActive.forEach(player => {
+        const li = document.createElement('li');
+        const shieldCount = playerShields[player] || 0;
+        const safeId = getSafePlayerId(player);
+
+        // إضافة الصورة حسب اسم اللاعب
+        let imgHtml = '';
+        if (player === "احمد توفيق") {
+            imgHtml = `<img src="ahmed_tawfik.png" alt="احمد توفيق" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "منذر") {
+            imgHtml = `<img src="monzer.png" alt="منذر" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "سو") {
+            imgHtml = `<img src="sou.png" alt="سو" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "سالم") {
+            imgHtml = `<img src="salem.png" alt="سالم" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "رورو") {
+            imgHtml = `<img src="roro.png" alt="رورو" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "احمد محسن") {
+            imgHtml = `<img src="ahmed_mohsen.png" alt="احمد محسن" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "مصطفى") {
+            imgHtml = `<img src="mustafa.png" alt="مصطفى" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "احمد") {
+            imgHtml = `<img src="player1.png" alt="احمد" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
+        } else if (player === "بطاطس") {
+            imgHtml = `<img src="batatis.png" alt="بطاطس" style="width:32px;height:32px;border-radius:50%;vertical-align:middle;margin-left:7px;">`;
         }
+
+        li.innerHTML = `<span>${imgHtml}${player}</span>
+            <div class="shield-controls">
+                <button onclick="changeShieldCount('${player}', -1)" title="إنقاص درع">-</button>
+                <span id="shield-count-${safeId}">${shieldCount} 🛡️</span>
+                <button onclick="changeShieldCount('${player}', 1)" title="إضافة درع">+</button>
+            </div>`;
+        list.appendChild(li);
+    });
+}
 
         function changeShieldCount(playerName, amount) {
             const currentShields = playerShields[playerName] || 0;
@@ -910,40 +938,49 @@ if (player === "احمد توفيق") {
         }
 
         function playAgain(isFirstTimeSetup = false) {
-            const music = document.getElementById('music-bg');
-            if (music) { music.pause(); music.currentTime = 0; }
-            musicStarted = false;
-            stopCountdown();
-            
-            if (!isFirstTimeSetup) {
-                const currentPlayers = [...activePlayers, ...eliminatedPlayers];
-                document.getElementById('player-names').value = currentPlayers.join('\n');
-                document.getElementById('winner-screen').classList.remove('visible');
-                document.getElementById('gameScreen').classList.remove('active');
-                document.getElementById('startScreen').classList.add('active');
-                return;
-            }
-            
-            eliminatedPlayers = [];
-            fruitAssignments = [];
-            playerShields = {};
-            activePlayers.forEach(p => playerShields[p] = 0);
-            
-            gameEnded = false; 
-            bombExploded = false; 
-            bombAvailableForPlanting = false;
-            
-            // --- MODIFIED: Reset the state for the new game ---
-            Object.keys(specialFruitsState).forEach(key => {
-                specialFruitsState[key].used = false;
-            });
-            // specialFruitsAreEnabled is set only in startTheGame() and persists until a new game starts from the main screen.
+    const music = document.getElementById('music-bg');
+    if (music) { music.pause(); music.currentTime = 0; }
+    musicStarted = false;
+    stopCountdown();
 
-            document.getElementById('gameScreen').classList.add('active');
-            document.getElementById('startScreen').classList.remove('active');
-            
-            setupGame();
-        }
+    if (!isFirstTimeSetup) {
+        const currentPlayers = [...activePlayers, ...eliminatedPlayers];
+        document.getElementById('player-names').value = currentPlayers.join('\n');
+        document.getElementById('winner-screen').classList.remove('visible');
+        document.getElementById('gameScreen').classList.remove('active');
+        document.getElementById('startScreen').classList.add('active');
+
+        // إضافة الأسطر التالية لحل مشكلة ظهور القوائم:
+        document.getElementById('active-players-section').style.display = 'block';
+        document.getElementById('eliminated-section').style.display = 'block';
+        updateActivePlayersList();
+        updateEliminatedList();
+
+        return;
+    }
+
+    eliminatedPlayers = [];
+    fruitAssignments = [];
+    playerShields = {};
+    activePlayers.forEach(p => playerShields[p] = 0);
+
+    gameEnded = false;
+    bombExploded = false;
+    bombAvailableForPlanting = false;
+
+    Object.keys(specialFruitsState).forEach(key => {
+        specialFruitsState[key].used = false;
+    });
+
+    document.getElementById('gameScreen').classList.add('active');
+    document.getElementById('startScreen').classList.remove('active');
+
+    // تأكيد ظهور القوائم في بداية اللعبة أيضاً
+    document.getElementById('active-players-section').style.display = 'block';
+    document.getElementById('eliminated-section').style.display = 'block';
+
+    setupGame();
+}
 
         function savePlayersList() {
             const names = document.getElementById('player-names').value;
